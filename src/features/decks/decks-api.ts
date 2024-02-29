@@ -9,13 +9,16 @@ export const instance = axios.create( {
 
 export const decksAPI = {
   getDecks() {
-    return instance.get<GetDecksResponseType>( '/v2/decks' )
+    return instance.get<GetDecksResponse>( '/v2/decks' )
   },
+  createDeck(title: string) {
+    return instance.post<CreateDeckResponse>('/v1/decks', { name: title })
+  }
 }
 
 // types
 // entity types
-export type DeckType = {
+export type Deck = {
   author: {
     id: string
     name: string
@@ -29,7 +32,7 @@ export type DeckType = {
   updated: Date
   cardsCount: number
 }
-export type PaginationType = {
+export type Pagination = {
   currentPage: number
   itemsPerPage: number
   totalPages: number
@@ -37,7 +40,12 @@ export type PaginationType = {
 }
 
 // response types
-type GetDecksResponseType = {
-  items: DeckType[]
-  pagination: PaginationType
+type GetDecksResponse = {
+  items: Deck[]
+  pagination: Pagination
+}
+type CreateDeckResponse = Deck & {
+  _count: {
+    card: number
+  },
 }

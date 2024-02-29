@@ -1,8 +1,8 @@
 import s from './DeckItem.module.css'
-import { DeckType } from 'features/decks/decks-api.ts'
+import { Deck } from 'features/decks/decks-api.ts'
 
 type DeckProps = {
-  deck: DeckType
+  deck: Deck
 }
 
 const TEST_ACC_NAME = 'kukus'
