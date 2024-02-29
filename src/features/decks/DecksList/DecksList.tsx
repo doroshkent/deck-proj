@@ -1,6 +1,6 @@
 import s from './DecksList.module.css'
 import { useEffect } from 'react'
-import { decksAPI } from '../decks-api.ts'
+import { decksAPI } from 'features/decks/decks-api.ts'
 
 export const DecksList = () => {
   useEffect( () => {
