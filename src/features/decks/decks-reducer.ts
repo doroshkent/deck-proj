@@ -18,6 +18,6 @@ export const decksReducer = (state: DecksState = initialState, action: DecksActi
   }
 }
 
-type DecksActions = ReturnType<typeof setDecksAC>
+export type DecksActions = ReturnType<typeof setDecksAC>
 
 export const setDecksAC = (decks: DeckType[]) => ({ type: 'SET-DECKS', decks } as const)
