@@ -15,7 +15,7 @@ export const decksAPI = {
 
 // types
 // entity types
-type DeckType = {
+export type DeckType = {
   author: {
     id: string
     name: string
@@ -29,7 +29,7 @@ type DeckType = {
   updated: Date
   cardsCount: number
 }
-type PaginationType = {
+export type PaginationType = {
   currentPage: number
   itemsPerPage: number
   totalPages: number
