@@ -1,5 +1,5 @@
 import { Deck } from 'features/decks/decks-api.ts'
-import { DecksState, decksReducer, setDecksAC, createDeckAC } from 'features/decks/decks-reducer.ts'
+import { DecksState, decksReducer, setDecksAC, addDeckAC } from 'features/decks/decks-reducer.ts'
 
 let startState: DecksState
 
@@ -18,24 +18,24 @@ const deck: Deck = {
   cardsCount: 5,
 }
 
-beforeEach( () => {
+beforeEach(() => {
   startState = {
     decks: [],
     searchParams: {
       name: '',
     },
   }
-} )
+})
 
-describe( 'decks reducer', () => {
-  test( 'decks should be set', () => {
-    const endState = decksReducer( startState, setDecksAC( [ deck ] ) )
+describe('decks reducer', () => {
+  test('decks should be set', () => {
+    const endState = decksReducer(startState, setDecksAC([deck]))
 
-    expect( endState.decks.length ).toBe( 1 )
-    expect( endState.decks[0].name ).toBe( 'Deck' )
-  } )
+    expect(endState.decks.length).toBe(1)
+    expect(endState.decks[0].name).toBe('Deck')
+  })
 
-  test( 'a new deck should be created', () => {
+  test('a new deck should be created', () => {
     const newDeck: Deck = {
       author: { id: '2', name: 'New Author' },
       id: '2',
@@ -48,9 +48,9 @@ describe( 'decks reducer', () => {
       cardsCount: 8,
     }
 
-    const endState = decksReducer( startState, createDeckAC( newDeck ) )
+    const endState = decksReducer(startState, addDeckAC(newDeck))
 
-    expect( endState.decks.length ).toBe( 1 )
-    expect( endState.decks[0].name ).toBe( 'New Deck' )
-  } )
-} )
+    expect(endState.decks.length).toBe(1)
+    expect(endState.decks[0].name).toBe('New Deck')
+  })
+})

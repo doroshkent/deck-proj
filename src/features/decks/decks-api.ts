@@ -1,23 +1,25 @@
 import axios from 'axios'
 
-export const instance = axios.create( {
+export const instance = axios.create({
   baseURL: 'https://api.flashcards.andrii.es',
   headers: {
     'x-auth-skip': true,
   },
-} )
+})
 
 export const decksAPI = {
   getDecks() {
-    return instance.get<GetDecksResponse>( '/v2/decks' )
+    return instance.get<GetDecksResponse>('/v2/decks')
   },
-  createDeck(title: string) {
-    return instance.post<CreateDeckResponse>('/v1/decks', { name: title })
-  }
+  createDeck(params: AddDeckParams) {
+    return instance.post<Deck>('/v1/decks', params)
+  },
 }
 
 // types
-// entity types
+export type AddDeckParams = {
+  name: string
+}
 export type Deck = {
   author: {
     id: string
@@ -43,9 +45,4 @@ export type Pagination = {
 type GetDecksResponse = {
   items: Deck[]
   pagination: Pagination
-}
-type CreateDeckResponse = Deck & {
-  _count: {
-    card: number
-  },
 }

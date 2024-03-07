@@ -1,6 +1,3 @@
-import { useAppSelector } from 'app/store.ts'
-import { Deck } from 'features/decks/decks-api.ts'
+import { AppRootState } from 'app/store.ts'
 
-export const useDecks = () => {
-  return useAppSelector<Deck[]>( (state) => state.decksReducer.decks )
-}
+export const selectDecks = (state: AppRootState) => state.decksReducer.decks

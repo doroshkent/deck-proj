@@ -13,34 +13,34 @@ export const AddNewDeckForm = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormValues>( {
+  } = useForm<FormValues>({
     defaultValues: {
       name: '',
     },
-  } )
+  })
   const dispatch = useAppDispatch()
 
   const onSubmit = (data: FormValues) => {
-    dispatch( createDeckTC( data.name ) ).then( () => {
+    dispatch(createDeckTC(data)).then(() => {
       reset()
-    } )
+    })
   }
 
   return (
-    <form className={ s.form } onSubmit={ handleSubmit( onSubmit ) }>
-      <label className={ s.label }>
+    <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+      <label className={s.label}>
         Deck name
         <input
-          { ...register( 'name', {
+          {...register('name', {
             required: 'Name is required',
             minLength: {
               value: 3,
               message: 'Name must be longer than or equal to 3 characters',
             },
-          } ) }
+          })}
           autoComplete="off"
         />
-        <p className={ s.errorMessage }>{ errors.name && errors.name.message }</p>
+        <p className={s.errorMessage}>{errors.name?.message}</p>
       </label>
       <button type="submit">Add new deck</button>
     </form>
