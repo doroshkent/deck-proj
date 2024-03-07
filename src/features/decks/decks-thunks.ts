@@ -1,7 +1,6 @@
 import { AppThunk } from 'app/store.ts'
 import { AddDeckParams, decksAPI, UpdateDeckParams } from 'features/decks/decks-api.ts'
 import { addDeckAC, deleteDeckAC, setDecksAC, updateDeckAC } from 'features/decks/decks-reducer.ts'
-import { Dispatch } from 'redux'
 import { setAppRequestStatus } from 'app/app-reducer.ts'
 
 export const fetchDecksTC = (): AppThunk => async (dispatch) => {
@@ -23,7 +22,7 @@ export const createDeckTC =
   }
 
 export const deleteDeckTC =
-  (id: string): AppThunk =>
+  (id: string): AppThunk<Promise<void>> =>
   async (dispatch) => {
     return decksAPI.deleteDeck(id).then((res) => {
       dispatch(deleteDeckAC(res.data.id))
@@ -31,7 +30,7 @@ export const deleteDeckTC =
   }
 
 export const updateDeckTC =
-  (params: UpdateDeckParams): AppThunk =>
+  (params: UpdateDeckParams): AppThunk<Promise<void>> =>
   async (dispatch) => {
     return decksAPI.updateDeck(params).then((res) => {
       dispatch(updateDeckAC(res.data))
