@@ -17,14 +17,20 @@ export const DeckItem = ({ deck }: DeckProps) => {
 
   const handleDeleteButtonClick = async () => {
     setIsLoading(true)
-    await dispatch(deleteDeckTC(deck.id))
-    setIsLoading(false)
+    try {
+      await dispatch(deleteDeckTC(deck.id))
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleEditButtonClick = async () => {
     setIsLoading(true)
-    await dispatch(updateDeckTC({ id: deck.id, name: `${deck.name} updated` }))
-    setIsLoading(false)
+    try {
+      await dispatch(updateDeckTC({ id: deck.id, name: `${deck.name} updated` }))
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (

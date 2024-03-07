@@ -50,6 +50,13 @@ export type Pagination = {
   totalPages: number
   totalItems: number
 }
+type RequestError = {
+  field: string
+  message: string
+}
+export type ErrorMessages = {
+  errorMessages: RequestError[]
+}
 
 // response types
 type GetDecksResponse = {
