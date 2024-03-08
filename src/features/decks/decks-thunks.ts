@@ -4,7 +4,7 @@ import { addDeckAC, deleteDeckAC, setDecksAC, updateDeckAC } from 'features/deck
 import { setAppRequestStatus } from 'app/app-reducer.ts'
 import { handleError } from 'common/utils/handle-error.ts'
 
-export const fetchDecksTC = (): AppThunk => async (dispatch) => {
+export const fetchDecksTC = (): AppThunk<Promise<void>> => async (dispatch) => {
   dispatch(setAppRequestStatus('loading'))
   try {
     const res = await decksAPI.getDecks()

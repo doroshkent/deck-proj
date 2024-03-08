@@ -15,22 +15,14 @@ export const DeckItem = ({ deck }: DeckProps) => {
   const isTestingDeck = deck.author.name === TEST_ACC_NAME
   const dispatch = useAppDispatch()
 
-  const handleDeleteButtonClick = async () => {
+  const handleDeleteButtonClick = () => {
     setIsLoading(true)
-    try {
-      await dispatch(deleteDeckTC(deck.id))
-    } finally {
-      setIsLoading(false)
-    }
+    dispatch(deleteDeckTC(deck.id)).finally(() => setIsLoading(false))
   }
 
-  const handleEditButtonClick = async () => {
+  const handleEditButtonClick = () => {
     setIsLoading(true)
-    try {
-      await dispatch(updateDeckTC({ id: deck.id, name: `${deck.name} updated` }))
-    } finally {
-      setIsLoading(false)
-    }
+    dispatch(updateDeckTC({ id: deck.id, name: `${deck.name} updated` })).finally(() => setIsLoading(false))
   }
 
   return (
